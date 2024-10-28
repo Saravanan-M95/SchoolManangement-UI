@@ -100,7 +100,19 @@ class StudentForm extends Component {
 
     }
 
-    handleClickNext = (e) => {
+    handleClickNext = () => {
+
+        let body = {
+            name: "morpheus",
+            job: "leader"
+        }
+        console.log(JSON.stringify(this.state));
+        let res = fetch("https://reqres.in/api/users",{
+            method:"POST",
+            headers:{"content-type":"applicatio/json"},
+            body:JSON.stringify(body)
+        }).then( res => res.json()).catch((e)=> e);
+
 
     }
     handleClickPrevious = (e) => {
@@ -497,7 +509,7 @@ class StudentForm extends Component {
                         </FormColumn>
                         <div style={{ flexBasis: "60em" }}></div>
                         <FormColumn>
-                            <PrimaryButton onClick={(e) => this.handleClickNext(e)} type="button">Submit</PrimaryButton>
+                            <PrimaryButton onClick={this.handleClickNext()} type="button">Submit</PrimaryButton>
                         </FormColumn>
 
                     </FormRow>
