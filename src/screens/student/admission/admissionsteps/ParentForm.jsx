@@ -688,41 +688,41 @@ class ParentForm extends Component {
                                         </FormColumn>
                                         <FormColumn formGap></FormColumn>
                                         <FormColumn>
-                                        <Label>Date Of Birth :</Label>
-                                        <DatePick
-                                            selected={this.state.dateOfBirth}
-                                            onChange={this.handleChangeDateOfBirth}
-                                        />
+                                            <Label>Date Of Birth :</Label>
+                                            <DatePick
+                                                selected={this.state.dateOfBirth}
+                                                onChange={this.handleChangeDateOfBirth}
+                                            />
                                         </FormColumn>
                                     </FormRow>
                                     <FormRow>
-                                    <FormColumn formGap style={{ marginRight: "0.5em" }}>
-                                        <Label>Gender :</Label>
-                                        <Dropdown options={Gender} type="text"
-                                            name="gender"
-                                            id="gender"
-                                            value={this.state.gender}
-                                            onChange={e => this.doChange(e)}>
-                                            <Option>Male</Option>
-                                            <Option>Female</Option>
-                                            <Option>Third Gender</Option>
-                                        </Dropdown>
-                                    </FormColumn>
-                                        <FormColumn formGap></FormColumn>
-                                     
                                         <FormColumn formGap style={{ marginRight: "0.5em" }}>
-                                        <Label>Marital Status :</Label>
-                                        <Dropdown options={MaritalStatus} type="text"
-                                            name="maritalStatus"
-                                            id="maritalStatus"
-                                            value={this.state.maritalStatus}
-                                            onChange={e => this.doChange(e)}>
-                                            <Option>Single</Option>
-                                            <Option>Married</Option>
-                                            <Option>Divorced</Option>
-                                            <Option>Widowed</Option>
-                                        </Dropdown>
-                                    </FormColumn>
+                                            <Label>Gender :</Label>
+                                            <Dropdown options={Gender} type="text"
+                                                name="gender"
+                                                id="gender"
+                                                value={this.state.gender}
+                                                onChange={e => this.doChange(e)}>
+                                                <Option>Male</Option>
+                                                <Option>Female</Option>
+                                                <Option>Third Gender</Option>
+                                            </Dropdown>
+                                        </FormColumn>
+                                        <FormColumn formGap></FormColumn>
+
+                                        <FormColumn formGap style={{ marginRight: "0.5em" }}>
+                                            <Label>Marital Status :</Label>
+                                            <Dropdown options={MaritalStatus} type="text"
+                                                name="maritalStatus"
+                                                id="maritalStatus"
+                                                value={this.state.maritalStatus}
+                                                onChange={e => this.doChange(e)}>
+                                                <Option>Single</Option>
+                                                <Option>Married</Option>
+                                                <Option>Divorced</Option>
+                                                <Option>Widowed</Option>
+                                            </Dropdown>
+                                        </FormColumn>
                                     </FormRow>
 
                                     <FormRow>
@@ -744,32 +744,33 @@ class ParentForm extends Component {
                                                 onChange={e => this.doChange(e)}></FlatInput>
                                         </FormColumn>
                                     </FormRow>
-                                   
                                     <FormRow>
                                         <FormColumn>
-                                            <Label>Educational Qualifications :</Label>
-                                            <FlatInput placeholder="Educational Qualifications " type="text"
-                                                name="qualification"
-                                                id="qualification"
-                                                value={this.state.qualification}
-                                                onChange={e => this.doChange(e)}></FlatInput>
+                                            <Label>Are you a fresher? :</Label>
+                                            <Dropdown options={Fresher} type="text"
+                                                name="fresher"
+                                                id="fresher"
+                                                value={this.state.fresher}
+                                                onChange={e => this.doChange(e)}>
+                                                <Option>Yes</Option>
+                                                <Option>No</Option>
+                                            </Dropdown>
                                         </FormColumn>
                                         <FormColumn formGap></FormColumn>
-                                        <FormColumn>
-                                        <Label>Are you a fresher? :</Label>
-                                        <Dropdown options={Fresher} type="text"
-                                            name="fresher"
-                                            id="fresher"
-                                            value={this.state.fresher}
-                                            onChange={e => this.doChange(e)}>
-                                            <Option>Yes</Option>
-                                            <Option>No</Option>
-                                        </Dropdown>
-                                    </FormColumn>
+                                        {this.state.fresher == 'Yes' ?
+                                            <FormColumn>
+                                                <Label>Experience :</Label>
+                                                <FlatInput placeholder="Experience " type="text"
+                                                    name="experience"
+                                                    id="experience"
+                                                    value={this.state.experience}
+                                                    onChange={e => this.doChange(e)}></FlatInput>
+                                            </FormColumn>
+                                            : ""}
                                     </FormRow>
                                 </Card>
                             </FormColumn>
-                            
+
                             <FormColumn>
                                 <Card>
                                     <FormRow>
@@ -880,16 +881,16 @@ class ParentForm extends Component {
                                         </FormColumn>
                                     </FormRow>
 
-                                    </Card>
-                                    </FormColumn>
-      
-                            </FormRow>
+                                </Card>
+                            </FormColumn>
 
-                            <FormRow>
-                                <Card>
-                            <FormColumn>
-                        
-                            <FormRow>
+                        </FormRow>
+
+                        <FormRow>
+                            <Card>
+                                <FormColumn>
+
+                                    <FormRow>
                                         <CardHeader>
                                             Profile Picture
                                         </CardHeader>
@@ -907,13 +908,299 @@ class ParentForm extends Component {
                                             <FlatInput style={{ width: "15em" }} type="file" />
                                         </FormColumn>
                                         <FormColumn></FormColumn>
-                                    </FormRow> 
-                            </FormColumn></Card>
+                                    </FormRow>
+                                </FormColumn></Card>
                             <FormColumn>
-                            <PrimaryButton onClick={(e) => this.handleClickNext(e)} type="button">Submit</PrimaryButton>
-                        </FormColumn>
-                            </FormRow>
-                            </div>
+                                <PrimaryButton onClick={(e) => this.handleClickNext(e)} type="button">Submit</PrimaryButton>
+                            </FormColumn>
+                        </FormRow>
+                    </div>
+                    : ""}
+
+                {this.state.admissionFor == 'Employee' ?
+                    <div>
+                        <FormRow>
+                            <FormColumn>
+                                <Card>
+                                    <FormRow>
+                                        <CardHeader>
+                                            Personal Details
+                                        </CardHeader>
+                                    </FormRow>
+                                    <FormRow>
+                                        <FormColumn>
+                                            <Label>Post Applied for</Label>
+                                            <FlatInput placeholder="Post Applied for" type="text"
+                                                name="post"
+                                                id="post"
+                                                value={this.state.post}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                        <FormColumn formGap></FormColumn>
+                                        <FormColumn>
+                                        </FormColumn>
+                                    </FormRow>
+                                    <FormRow>
+                                        <FormColumn>
+                                            <Label>First Name :</Label>
+                                            <FlatInput placeholder="First Name " type="text"
+                                                name="firstName"
+                                                id="firstName"
+                                                value={this.state.firstName}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                        <FormColumn formGap></FormColumn>
+                                        <FormColumn>
+                                            <Label>Last Name :</Label>
+                                            <FlatInput placeholder="Last Name" type="text"
+                                                name="lastName"
+                                                id="lastName"
+                                                value={this.state.lastName}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                    </FormRow>
+
+                                    <FormRow>
+                                        <FormColumn>
+                                            <Label>Father/Spouse Name :</Label>
+                                            <FlatInput placeholder="Father/Spouse Name " type="text"
+                                                name="fatherName"
+                                                id="fatherName"
+                                                value={this.state.fatherName}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                        <FormColumn formGap></FormColumn>
+                                        <FormColumn>
+                                            <Label>Date Of Birth :</Label>
+                                            <DatePick
+                                                selected={this.state.dateOfBirth}
+                                                onChange={this.handleChangeDateOfBirth}
+                                            />
+                                        </FormColumn>
+                                    </FormRow>
+                                    <FormRow>
+                                        <FormColumn formGap style={{ marginRight: "0.5em" }}>
+                                            <Label>Gender :</Label>
+                                            <Dropdown options={Gender} type="text"
+                                                name="gender"
+                                                id="gender"
+                                                value={this.state.gender}
+                                                onChange={e => this.doChange(e)}>
+                                                <Option>Male</Option>
+                                                <Option>Female</Option>
+                                                <Option>Third Gender</Option>
+                                            </Dropdown>
+                                        </FormColumn>
+                                        <FormColumn formGap></FormColumn>
+
+                                        <FormColumn formGap style={{ marginRight: "0.5em" }}>
+                                            <Label>Marital Status :</Label>
+                                            <Dropdown options={MaritalStatus} type="text"
+                                                name="maritalStatus"
+                                                id="maritalStatus"
+                                                value={this.state.maritalStatus}
+                                                onChange={e => this.doChange(e)}>
+                                                <Option>Single</Option>
+                                                <Option>Married</Option>
+                                                <Option>Divorced</Option>
+                                                <Option>Widowed</Option>
+                                            </Dropdown>
+                                        </FormColumn>
+                                    </FormRow>
+
+                                    <FormRow>
+                                        <FormColumn>
+                                            <Label>Mobile Number :</Label>
+                                            <FlatInput placeholder="Mobile Number " type="text"
+                                                name="mobile"
+                                                id="mobile"
+                                                value={this.state.mobile}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                        <FormColumn formGap></FormColumn>
+                                        <FormColumn>
+                                            <Label>Email :</Label>
+                                            <FlatInput placeholder="Email " type="text"
+                                                name="email"
+                                                id="email"
+                                                value={this.state.email}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                    </FormRow>
+
+                                    <FormRow>
+
+
+                                        <FormColumn>
+                                            <Label>Are you a fresher? :</Label>
+                                            <Dropdown options={Fresher} type="text"
+                                                name="fresher"
+                                                id="fresher"
+                                                value={this.state.fresher}
+                                                onChange={e => this.doChange(e)}>
+                                                <Option>Yes</Option>
+                                                <Option>No</Option>
+                                            </Dropdown>
+                                        </FormColumn>
+                                        <FormColumn formGap></FormColumn>
+                                        {this.state.fresher == 'Yes' ?
+                                            <FormColumn>
+                                                <Label>Experience :</Label>
+                                                <FlatInput placeholder="Experience " type="text"
+                                                    name="experience"
+                                                    id="experience"
+                                                    value={this.state.experience}
+                                                    onChange={e => this.doChange(e)}></FlatInput>
+                                            </FormColumn>
+                                            : ""}
+                                    </FormRow>
+                                </Card>
+                            </FormColumn>
+
+                            <FormColumn>
+                                <Card>
+                                    <FormRow>
+                                        <CardHeader>
+                                            Educational's Details
+                                        </CardHeader>
+                                    </FormRow>
+                                    <FormRow>
+                                        <FormColumn>
+                                            <Label>Degree :</Label>
+                                            <FlatInput placeholder="Degree" type="text"
+                                                name="degree"
+                                                id="degree"
+                                                value={this.state.degree}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                        <FormColumn formGap></FormColumn>
+                                        <FormColumn>
+                                            <Label>College Name :</Label>
+                                            <FlatInput placeholder="College Name " type="text"
+                                                name="collegeName"
+                                                id="collegeName"
+                                                value={this.state.collegeName}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                    </FormRow>
+                                    <FormRow>
+                                        <FormColumn>
+                                            <Label>Year of Passing :</Label>
+                                            <FlatInput placeholder="Year of Passing" type="text"
+                                                name="yearPassed"
+                                                id="yearPassed"
+                                                value={this.state.yearPassed}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                        <FormColumn formGap></FormColumn>
+                                        <FormColumn>
+                                            <Label>Percentage :</Label>
+                                            <FlatInput placeholder="Percentage " type="text"
+                                                name="percentage"
+                                                id="percentage"
+                                                value={this.state.percentage}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                    </FormRow>
+                                    <FormRow></FormRow>
+                                    <FormRow>
+                                        <CardHeader>
+                                            Address Details
+                                        </CardHeader>
+                                    </FormRow>
+                                    <FormRow>
+                                        <FormColumn>
+                                            <Label>Address Line 1 :</Label>
+                                            <FlatInput placeholder="Address Line 1 " type="text"
+                                                name="address1"
+                                                id="address1"
+                                                value={this.state.address1}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                        <FormColumn formGap></FormColumn>
+                                        <FormColumn>
+                                            <Label>Address Line 2 :</Label>
+                                            <FlatInput placeholder="Address Line 2 " type="text"
+                                                name="address2"
+                                                id="address2"
+                                                value={this.state.address2}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                    </FormRow>
+                                    <FormRow>
+                                        <FormColumn>
+                                            <Label>City :</Label>
+                                            <FlatInput placeholder="City " type="text"
+                                                name="city"
+                                                id="city"
+                                                value={this.state.city}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                        <FormColumn formGap></FormColumn>
+                                        <FormColumn>
+                                            <Label>State :</Label>
+                                            <FlatInput placeholder="State " type="text"
+                                                name="state"
+                                                id="state"
+                                                value={this.state.state}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                    </FormRow>
+
+                                    <FormRow>
+                                        <FormColumn>
+                                            <Label>Landmark :</Label>
+                                            <FlatInput placeholder="Landmark " type="text"
+                                                name="landmark"
+                                                id="landmark"
+                                                value={this.state.landmark}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                        <FormColumn formGap></FormColumn>
+                                        <FormColumn>
+                                            <Label>Pincode :</Label>
+                                            <FlatInput placeholder="Pincode " type="text"
+                                                name="pincode"
+                                                id="pincode"
+                                                value={this.state.pincode}
+                                                onChange={e => this.doChange(e)}></FlatInput>
+                                        </FormColumn>
+                                    </FormRow>
+
+                                </Card>
+                            </FormColumn>
+
+                        </FormRow>
+
+                        <FormRow>
+                            <Card>
+                                <FormColumn>
+
+                                    <FormRow>
+                                        <CardHeader>
+                                            Profile Picture
+                                        </CardHeader>
+                                    </FormRow>
+                                    <FormRow>
+                                        <FormColumn></FormColumn>
+                                        <FormColumn>
+                                            <img src="https://img.icons8.com/color/48/000000/person-male.png"></img>
+                                        </FormColumn>
+                                        <FormColumn></FormColumn>
+                                    </FormRow>
+                                    <FormRow>
+                                        <FormColumn></FormColumn>
+                                        <FormColumn>
+                                            <FlatInput style={{ width: "15em" }} type="file" />
+                                        </FormColumn>
+                                        <FormColumn></FormColumn>
+                                    </FormRow>
+                                </FormColumn></Card>
+                            <FormColumn>
+                                <PrimaryButton onClick={(e) => this.handleClickNext(e)} type="button">Submit</PrimaryButton>
+                            </FormColumn>
+                        </FormRow>
+                    </div>
                     : ""}
             </FormContainer >
         )

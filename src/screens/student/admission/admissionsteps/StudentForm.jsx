@@ -100,17 +100,17 @@ class StudentForm extends Component {
 
     }
 
-    handleClickNext = () => {
+    handleStudentSubmit = () => {
 
         let body = {
             name: "morpheus",
             job: "leader"
         }
         console.log(JSON.stringify(this.state));
-        let res = fetch("https://reqres.in/api/users",{
+        let res = fetch("https://school-management-440708.df.r.appspot.com/student/create/admission",{
             method:"POST",
             headers:{"content-type":"applicatio/json"},
-            body:JSON.stringify(body)
+            body:JSON.stringify(this.state)
         }).then( res => res.json()).catch((e)=> e);
 
 
@@ -262,7 +262,7 @@ class StudentForm extends Component {
                                 <FormRow>
                                     <FormColumn formGap>
                                         <Label>Contact No :</Label>
-                                        <FlatInput type="number" placeholder="Contact No" type="number"
+                                        <FlatInput type="number" placeholder="Contact No"
                                             name="contactNo"
                                             id="contactNo"
                                             value={this.state.contactNo}
@@ -509,7 +509,7 @@ class StudentForm extends Component {
                         </FormColumn>
                         <div style={{ flexBasis: "60em" }}></div>
                         <FormColumn>
-                            <PrimaryButton onClick={this.handleClickNext()} type="button">Submit</PrimaryButton>
+                            <PrimaryButton onClick={this.handleStudentSubmit()} type="button">Submit</PrimaryButton>
                         </FormColumn>
 
                     </FormRow>

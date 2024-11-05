@@ -16,7 +16,12 @@ import SearchIconPrimary from '../../../components/icon/SearchIconPrimary'
 
 const cardStyle = {
     textAlign: "center",
-    width: "25em"
+    width: "23em"
+}
+
+const empCardStyle = {
+    textAlign: "center",
+    width: "10em"
 }
 
 const grades = [
@@ -58,6 +63,22 @@ export default class ManageAdmission extends Component {
 
     handleName() {
         this.setState({ NameStatus: true, AdmissionStatus: false, DivisionStatus: false })
+    }
+
+    handleStaffClass() {
+        this.setState({ ClassStatus: true, StaffNoStatus: false, StaffNameStatus: false })
+    }
+
+    handleStaffNo() {
+        this.setState({ ClassStatus: false, StaffNoStatus: true, StaffNameStatus: false })
+    }
+
+    handleStaffName() {
+        this.setState({ ClassStatus: false, StaffNoStatus: false, StaffNameStatus: true })
+    }
+
+    handleEmployeeNo() {
+        this.setState({EmployeeNoStatus: true})
     }
 
     render() {
@@ -120,8 +141,109 @@ export default class ManageAdmission extends Component {
 
                         </Card>
                     </FlexBoxColumn>
+
+                    <FlexBoxColumn>
+                        <Card style={cardStyle}>
+                            <FlexBoxRow>
+
+                                <FlexBoxColumn>
+                                    <Heading3 style={{ marginLeft: "7.7em" }}>Search A Staff</Heading3>
+                                </FlexBoxColumn>
+
+                            </FlexBoxRow>
+                            <FlexBoxRow style={{ justifyContent: "space-between" }}>
+                                <FlexBoxColumn>
+                                    <TogglerButton onClick={() => this.handleStaffClass()}>By Class</TogglerButton>
+                                </FlexBoxColumn>
+                                <FlexBoxColumn>
+                                    <TogglerButton onClick={() => this.handleStaffNo()}>By Staff No</TogglerButton>
+                                </FlexBoxColumn>
+                                <FlexBoxColumn>
+                                    <TogglerButton onClick={() => this.handleStaffName()}>By Name</TogglerButton>
+                                </FlexBoxColumn>
+                            </FlexBoxRow>
+                            <br />
+                            <FlexBoxRow style={{ justifyContent: "space-between" }}>
+                                {this.state.ClassStatus ? <FlexBoxColumn>
+                                    <Selection options={grades} placeholder="Standard"></Selection>
+                                </FlexBoxColumn> : ""}
+                                {this.state.ClassStatus ? <FlexBoxColumn>
+                                    <Selection options={divisions} placeholder="Section"></Selection>
+                                </FlexBoxColumn> : ""}
+
+                                {this.state.StaffNoStatus ?
+
+                                    <FlexBoxColumn>
+                                        <Input placeholder="Enter A Staff No"></Input>
+                                    </FlexBoxColumn> : ""}
+                                {this.state.StaffNoStatus ? <FlexBoxColumn>
+                                    <LargeIconOnlyButton primary><SearchIconPrimary /></LargeIconOnlyButton>
+                                </FlexBoxColumn> : ""}
+                                {this.state.StaffNameStatus ?
+
+                                    <FlexBoxColumn>
+                                        <Input placeholder="Enter A Staff Name"></Input>
+                                    </FlexBoxColumn> : ""}
+                                {this.state.StaffNameStatus ? <FlexBoxColumn style={{ justifyContent: "center" }}>
+                                    <LargeIconOnlyButton primary><SearchIconPrimary /></LargeIconOnlyButton>
+                                </FlexBoxColumn>
+
+                                    : ""}
+
+                            </FlexBoxRow>
+
+                            
+
+                            <br />
+
+                            <br />
+
+                        </Card>
+                    </FlexBoxColumn>
+
+                    <FlexBoxColumn>
+                        <Card style={empCardStyle}>
+                            <FlexBoxRow>
+
+                                <FlexBoxColumn>
+                                    <Heading3 style={{ marginLeft: "0.7em" }}>Search A Employee</Heading3>
+                                </FlexBoxColumn>
+
+                            </FlexBoxRow>
+                            <FlexBoxRow style={{ justifyContent: "space-between" }}>
+                                <FlexBoxColumn>
+                                    <TogglerButton onClick={() => this.handleEmployeeNo()}>By Employee No</TogglerButton>
+                                </FlexBoxColumn>
+                            </FlexBoxRow>
+                            <br />
+                            <FlexBoxRow style={{ justifyContent: "space-between" }}>
+                               {this.state.EmployeeNoStatus ?
+
+                                    <FlexBoxColumn>
+                                        <Input placeholder="Employee No"></Input>
+                                    </FlexBoxColumn> : ""}
+                                {this.state.EmployeeNoStatus ? <FlexBoxColumn>
+                                    <LargeIconOnlyButton primary><SearchIconPrimary /></LargeIconOnlyButton>
+                                </FlexBoxColumn> : ""}
+
+                                    
+
+                            </FlexBoxRow>
+
+                            
+
+                            <br />
+
+                            <br />
+
+                        </Card>
+                    </FlexBoxColumn>
+                    
                 </FlexBoxRow>
+
             </FlexBoxContainer>
+
+            
         )
     }
 }
